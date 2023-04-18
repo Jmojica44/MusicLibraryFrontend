@@ -1,6 +1,9 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import MusicTable from './Components/MusicTable/MusicTable';
+import AddNewSong from './Components/AddNewSong/AddNewSong';
+import SearchBar from './Components/SearchBar/SearchBar';
 
 
 function App() {
@@ -24,13 +27,42 @@ function App() {
   }
 
   const filterSongs = (e) => {
-    let filterValue = e.target.value
-  }
+    let filterValue = e.target.value;
+    if (filterValue === "") {
+      getAllSongs();
+    } else {
+      let filteredSongs = songs.filter(
+        (x) =>
+        x.title.toLowerCase().includes(filterValue.toLowerCase()) ||
+        x.artist.toLowerCase().includes(filterValue.toLowerCase()) ||
+        x.album.toLowerCase().includes(filterValue.toLowerCase()) ||
+        x.genre.toLowerCase().includes(filterValue.toLowerCase())
+      );
+      setSongs(filteredSongs);
+    }
+  };
 
 
   return(
-<p class='app-link'> Hello World</p>
+    <div className="container-fluid">
+      <div className="row">
+        <h3 style= {{margin: "1em"}}> Music
+        <medium className="text-muted"> Library </medium></h3>
+        <div className="col-sm">
+          <div className="border=box">
+            <MusicTable parentSongs={songs} />
+          </div>
+          <div className="border-box">
+            <AddNewSong addNewSongProperty={addNewSong} />
+          </div>
+        </div>
+        <div className="col-">
+          <div className='border-box'>
+            <SearchBar filterSongs={filterSongs}/>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
-
 export default App;
