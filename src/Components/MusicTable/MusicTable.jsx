@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
+import './MusicTable.css'
+
 
 const MusicTable = (props) => {
 
     return (
         <div>
-            <table>
+            <table className="table table-striped table-light">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>Artist</th>
-                        <th>Album</th>
-                        <th>Genre</th>
-                        <th>Release Date</th>
-                        <th>Running Time</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Artist</th>
+                        <th scope="col">Album</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col">Release Date</th>
+                        <th scope="col">Running Time</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './AddNewSong.css';
 
 const AddNewSong = (props) => {
 
@@ -14,17 +15,17 @@ const AddNewSong = (props) => {
         let newSong = {
             title: title,
             artist: artist,
-            album, album,
+            album: album,
             genre: genre,
             release_date: release_date,
             running_time: running_time
         };
-    console.log(newSong);
-    props.addNewSongProperty(newSong)
-}
+        console.log(newSong);
+        props.addNewSongProperty(newSong);
+    };
 
     return (
-        <form onSubmit={handleSubmit} clasName ="form-grid">
+        <form onSubmit={handleSubmit} className ="form-grid">
             <div className="form-group">
                 <label> Title </label>
                 <input type="text" className="form-control" id="inputTitle" placeholder="Title" value={title} onChange={(event) => setTitle(event.target.value)} />
@@ -47,7 +48,7 @@ const AddNewSong = (props) => {
             </div>
             <div className="form-group">
                 <label> Running Time </label>
-                <input type="number" className="form-control" value={running_time} onChange={(event) => setRunningTime(event.target.value)} />
+                <input type="number" className="form-control" value={running_time} onChange={(event) => setRunningTime(parseFloat(event.target.value))} />
             </div>
             <button type="submit" className="btn btn-primary" style={{"margin-top": "1em"}}> Add </button>
         </form>
